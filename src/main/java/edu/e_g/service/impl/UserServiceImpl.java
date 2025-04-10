@@ -1,50 +1,62 @@
 package edu.e_g.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.e_g.dto.User;
 import edu.e_g.entity.UserEntity;
 import edu.e_g.repository.UserRepository;
 import edu.e_g.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class UserServiceImpl implements UserService {
-
-    final UserRepository userRepo;
-    final ObjectMapper mapper;
-//    final BCryptPasswordEncoder encoder;
-
+    final ModelMapper mapper;
+    final UserRepository userRepository;
     @Override
-    public Boolean addUser(User user) {
-//         user.setPassword(encoder.encode(user.getPassword()));
-//         userRepo.save(mapper.convertValue(user, UserEntity.class));
-//         log.info("error :",user);
-//         return user;
-        try {
-            userRepo.save(mapper.convertValue(user, UserEntity.class));
-            return true;
-        }catch (Exception e){
-            log.info(" saved error massage : "+e.getMessage());
-            return false;
+    public boolean saveUser(User user) {
+        if (user == null || user.getUsername() == null || user.getUsername().isEmpty()) {
+            throw new IllegalArgumentException("Invalid user");
         }
+        return Optional.ofNullable(
+                        mapper.map(userRepository.save(mapper.map(user, UserEntity.class)), User.class)
+                ).map(User::getUsername)
+                .filter(username -> !username.isEmpty())
+                .isPresent();
     }
 
     @Override
     public boolean updateUser(User user) {
-        return false;
+        if (user == null || user.getUsername() == null || user.getUsername().isEmpty()) {
+            throw new IllegalArgumentException("Invalid user");
+        }
+        return userRepository.findById(user.getId())
+                .map(existing -> userRepository.save(mapper.map(user, UserEntity.class)))
+                .map(saved -> mapper.map(saved, User.class))
+                .map(User::getUsername)
+                .filter(username -> !username.isEmpty())
+                .isPresent();
     }
 
     @Override
-    public User getUser() {
-        return null;
+    public User getUserByEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Invalid email");
+        }
+        UserEntity user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        return mapper.map(user,User.class);
     }
 
     @Override
-    public User getLastUser() {
-        return null;
+    public List<User> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(userEntity -> mapper.map(userEntity, User.class))
+                .toList();
     }
 }

@@ -4,6 +4,8 @@ import edu.e_g.util.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Optional;
+
 @Data
 @ToString
 @AllArgsConstructor
@@ -14,14 +16,13 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String nic;
     private String phoneNumber;
+    private String email;
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
-    private String email;
+    private String username;
     private String password;
 }

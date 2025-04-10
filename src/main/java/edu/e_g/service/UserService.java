@@ -2,9 +2,11 @@ package edu.e_g.service;
 
 import edu.e_g.dto.User;
 
+import java.util.List;
+
 public interface UserService {
-    Boolean addUser(User user);
+    boolean saveUser(User user);
     boolean updateUser(User user);
-    User getUser();
-    User getLastUser();
+    User getUserByEmail(String email);
+    List<User> getAllUsers();
 }
