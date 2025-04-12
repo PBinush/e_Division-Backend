@@ -4,8 +4,6 @@ import edu.e_g.util.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Optional;
-
 @Data
 @ToString
 @AllArgsConstructor
