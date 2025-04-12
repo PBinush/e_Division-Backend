@@ -23,14 +23,22 @@ public class PersonEntity {
     private String address;
     private String nic;
     private LocalDate dob;
+
+    @Enumerated(EnumType.STRING)
     private GenderType gender;
+
+    @Enumerated(EnumType.STRING)
     private maritalStatusType maritalStatus;
     private String email;
     private String phoneNumber;
     private String occupation;
     private Double salary;
+
+    @Enumerated(EnumType.STRING)
     private DiseasedType diseased;
 //    private FamilyEntity family;
+
+    @Enumerated(EnumType.STRING)
     private IsActiveType isActive;
 }
 

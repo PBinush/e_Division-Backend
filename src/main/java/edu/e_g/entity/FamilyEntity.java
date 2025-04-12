@@ -25,8 +25,7 @@ public class FamilyEntity {
     @Enumerated(EnumType.STRING)
     private IncomeType incomeType;
 
-    @OneToMany(mappedBy = "familyEntity",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JsonManagedReference
-    private List<PersonEntity> personList;
-
+//    @OneToMany(mappedBy = "familyEntity",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    @JsonManagedReference
+//    private List<PersonEntity> personList;
 }

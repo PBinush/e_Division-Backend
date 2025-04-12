@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,5 +20,5 @@ public class Family {
 
     @JsonProperty("incomeType")
     private IncomeType incomeType;
-    private List<Person> personList;
+//    private List<Person> personList;
 }
