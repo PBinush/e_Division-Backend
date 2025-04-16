@@ -20,6 +20,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 public class Person {
+    @JsonProperty("personId")
+    private Long personId;
+
     @NotNull
     private String name;
 
@@ -55,7 +58,7 @@ public class Person {
     @NotNull
     private DiseasedType diseased;
 
-//    private Family family;
+    private Long family;
 
     @JsonProperty("isActive")
     private IsActiveType isActive;

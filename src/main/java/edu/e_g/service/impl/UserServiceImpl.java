@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         if (user == null || user.getUsername() == null || user.getUsername().isEmpty()) {
             throw new IllegalArgumentException("Invalid user");
         }
-        return userRepository.findById(user.getId())
+        return userRepository.findById(user.getUserId())
                 .map(existing -> userRepository.save(mapper.map(user, UserEntity.class)))
                 .map(saved -> mapper.map(saved, User.class))
                 .map(User::getUsername)

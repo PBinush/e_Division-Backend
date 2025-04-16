@@ -20,5 +20,4 @@ public class Family {
 
     @JsonProperty("incomeType")
     private IncomeType incomeType;
-//    private List<Person> personList;
 }

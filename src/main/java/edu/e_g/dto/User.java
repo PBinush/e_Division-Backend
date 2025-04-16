@@ -13,10 +13,10 @@ import lombok.*;
 @ToString
 @Builder
 public class User {
-    private Long id;
+    @JsonProperty("userId")
+    private Long userId;
 
     @NotNull
-    @JsonProperty("lastName")
     private String name;
 
     @NotNull

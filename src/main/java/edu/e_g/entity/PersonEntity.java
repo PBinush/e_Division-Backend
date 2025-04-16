@@ -19,6 +19,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name="person")
 public class PersonEntity {
+    private Long personId;
     private String name;
     private String address;
     private String nic;
@@ -36,7 +37,7 @@ public class PersonEntity {
 
     @Enumerated(EnumType.STRING)
     private DiseasedType diseased;
-//    private FamilyEntity family;
+    private Long family;
 
     @Enumerated(EnumType.STRING)
     private IsActiveType isActive;
