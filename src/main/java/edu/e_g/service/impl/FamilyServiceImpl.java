@@ -19,7 +19,7 @@ public class FamilyServiceImpl implements FamilyService {
     final ModelMapper mapper;
 
     @Override
-    public Boolean saveFamily(Family family) {
+    public boolean saveFamily(Family family) {
         if (family == null || family.getNumberOfMembers() == 0 ){
             throw new IllegalArgumentException("Invalid Family");
         }
@@ -47,7 +47,7 @@ public class FamilyServiceImpl implements FamilyService {
     }
 
     @Override
-    public Boolean updateFamily(Family family) {
+    public boolean updateFamily(Family family) {
         if (family == null || family.getNumberOfMembers() == 0 ) {
             throw new IllegalArgumentException("Invalid user");
         }
@@ -58,7 +58,7 @@ public class FamilyServiceImpl implements FamilyService {
     }
 
     @Override
-    public Boolean deleteFamily(Long id) {
+    public boolean deleteFamily(Long id) {
         if (id == null ){
             throw new IllegalArgumentException("Invalid id");
         }
